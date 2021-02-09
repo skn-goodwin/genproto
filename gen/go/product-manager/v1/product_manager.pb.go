@@ -31,7 +31,7 @@ type FetchRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Поле resource_id используется в качестве идентификатора REST ресурса в связке с google/api/annotations.proto
+	// resource_id field is used as a REST resource identifier for google/api/annotations.proto
 	//  string resource_id = 1;
 	Url string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
 }
@@ -80,7 +80,7 @@ type ListRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Поле resource_id используется в качестве идентификатора REST ресурса в связке с google/api/annotations.proto
+	// resource_id field is used as a REST resource identifier for google/api/annotations.proto
 	//  string resource_id = 1;
 	NextPageToken string `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
 	PageSize      int32  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
@@ -185,9 +185,9 @@ type ListResponse_Product struct {
 	unknownFields protoimpl.UnknownFields
 
 	Name             string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Price            string `protobuf:"bytes,2,opt,name=price,proto3" json:"price,omitempty"` // Используем тип string для предотвращения проблем с мантиссой
+	Price            string `protobuf:"bytes,2,opt,name=price,proto3" json:"price,omitempty"` // Use string type to prevent bugs with significand (мантисса)
 	PriceChangeCount int32  `protobuf:"varint,3,opt,name=price_change_count,json=priceChangeCount,proto3" json:"price_change_count,omitempty"`
-	UpdateUnix       int64  `protobuf:"varint,4,opt,name=update_unix,json=updateUnix,proto3" json:"update_unix,omitempty"`
+	UpdateUnix       int64  `protobuf:"varint,4,opt,name=update_unix,json=updateUnix,proto3" json:"update_unix,omitempty"` // Update timestamp in UNIX
 }
 
 func (x *ListResponse_Product) Reset() {
