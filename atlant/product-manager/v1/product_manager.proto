@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package atlant.product_manager.v1;
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "Atlant.ProductManager.V1";
+option go_package = "bitbucket.org/atlant-io/genproto/gen/go/product-manager/v1;product_manager";
+option java_multiple_files = true;
+option java_outer_classname = "ProductManagerProto";
+option java_package = "com.atlant.product_manager.v1";
+option objc_class_prefix = "APMV1";
+option php_namespace = "Atlant\\ProductManager\\V1";
+option ruby_package = "Atlant::ProductManager::V1";
+
+service ProductManagerService {
+  rpc Fetch(FetchRequest) returns (google.protobuf.Empty) {};
+  rpc List(ListRequest) returns (ListResponse) {};
+}
+
+message FetchRequest {
+  // resource_id field is used as a REST resource identifier for google/api/annotations.proto
+//  string resource_id = 1;
+  string url = 2;
+}
+
+message ListRequest {
+  // resource_id field is used as a REST resource identifier for google/api/annotations.proto
+//  string resource_id = 1;
+  string next_page_token = 2;
+  int32  page_size = 3;
+
+  // TODO: sorting params
+}
+
+message ListResponse {
+  repeated Product products = 1;
+
+  message Product {
+    string name = 1;
+    string price = 2; // Use string type to prevent bugs with significand (мантисса)
+    int32  price_change_count = 3;
+    int64  update_unix = 4; // Update timestamp in UNIX
+  }
+}
