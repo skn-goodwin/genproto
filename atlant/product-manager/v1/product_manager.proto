@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package atlant.product_manager.v1;
 
+import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 option csharp_namespace = "Atlant.ProductManager.V1";
@@ -13,9 +14,20 @@ option objc_class_prefix = "APMV1";
 option php_namespace = "Atlant\\ProductManager\\V1";
 option ruby_package = "Atlant::ProductManager::V1";
 
+// TODO: generate openapi docs
+
 service ProductManagerService {
-  rpc Fetch(FetchRequest) returns (google.protobuf.Empty) {};
-  rpc List(ListRequest) returns (ListResponse) {};
+  rpc Fetch(FetchRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/rpc:Fetch"
+    };
+  };
+
+  rpc List(ListRequest) returns (ListResponse) {
+    option (google.api.http) = {
+      get: "/v1/products"
+    };
+  };
 }
 
 message FetchRequest {
@@ -29,7 +41,7 @@ message ListRequest {
 //  string resource_id = 1;
   string next_page_token = 2;
   int32  page_size = 3;
-  string order_by = 4; // Ex: "name,price desc"
+  string order_by = 4; // Ex: "price desc,name" (default asc)
 }
 
 message ListResponse {
