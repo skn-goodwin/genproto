@@ -29,17 +29,16 @@ message ListRequest {
 //  string resource_id = 1;
   string next_page_token = 2;
   int32  page_size = 3;
-
-  // TODO: sorting params
+  string order_by = 4; // Ex: "name,price desc"
 }
 
 message ListResponse {
   repeated Product products = 1;
+}
 
-  message Product {
-    string name = 1;
-    string price = 2; // Use string type to prevent bugs with significand (мантисса)
-    int32  price_change_count = 3;
-    int64  update_unix = 4; // Update timestamp in UNIX
-  }
+message Product {
+  string name = 1;
+  string price = 2; // Use string type to prevent bugs with significand (мантисса)
+  int32  price_change_count = 3;
+  int64  update_unix = 4; // Update timestamp in UNIX
 }
